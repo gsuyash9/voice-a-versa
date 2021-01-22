@@ -49,6 +49,12 @@ const createToken = (id) => {
 module.exports.signup_get = (req, res) => {
   res.render('signup');
 }
+module.exports.audible_get = (req, res) => {
+  res.render('audible');
+}
+module.exports.orator_get = (req, res) => {
+  res.render('orator');
+}
 
 module.exports.login_get = (req, res) => {
   res.render('login');

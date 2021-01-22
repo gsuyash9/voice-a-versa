@@ -81,7 +81,7 @@ button{
   letter-spacing: 2px;
 }
 .error{
-  color: #ff0099;
+  color: #c70545;
   margin: 10px 2px;
   font-size: 0.8em;
   font-weight: bold;
@@ -114,7 +114,7 @@ header .btn{
 }
 .recipes{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0fr;
   column-gap: 30px;
   row-gap: 80px;
   margin: 80PX AUTO;

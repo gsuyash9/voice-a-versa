@@ -2,6 +2,8 @@ const { Router } = require('express');
 const authController = require('../controllers/authController');
 
 const router = Router();
+router.get('/audible', authController.audible_get);
+router.get('/orator', authController.orator_get);
 
 router.get('/signup', authController.signup_get);
 router.post('/signup', authController.signup_post);
