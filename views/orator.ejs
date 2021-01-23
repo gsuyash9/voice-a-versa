@@ -1,43 +1,54 @@
-<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Speech Detection</title>
+  <title>Orator</title>
 </head>
+
 <body>
-  
+
   <div class="words" contenteditable>
   </div>
+  <div>
+    <button class="btn start" type="reset">start/stop</button>
+    
+  </div>
 
-<script>
+  <script>
+    let start = document.querySelector('.start');
+    let stop = document.querySelector('.stop');
+    start.addEventListener('click', () => {
+      window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.interimResults = true;
 
-  const recognition= new SpeechRecognition();
-  recognition.interimResults= true;
-
-  let p=document.createElement('p');
-  let words=document.querySelector('.words');
-  words.appendChild(p);
-
-  recognition.addEventListener('result',e =>{
-   // console.log(e);
-    let transcript=Array.from(e.results)
-      .map(result=>result[0])
-      .map(result=>result.transcript)
-      .join('');
-    p.textContent=transcript;
-
-    if(e.results[0].isFinal){
-      p=document.createElement('p');
+      let p = document.createElement('p');
+      let words = document.querySelector('.words');
       words.appendChild(p);
-    }
-    console.log(transcript);
-  });
-  recognition.addEventListener('end',recognition.start);
-  recognition.start();
 
-</script>
+      recognition.addEventListener('result', e => {
+        // console.log(e);
+        let transcript = Array.from(e.results)
+          .map(result => result[0])
+          .map(result => result.transcript)
+          .join('');
+        p.textContent = transcript;
+
+        if (e.results[0].isFinal) {
+          p = document.createElement('p');
+          words.appendChild(p);
+        }
+        console.log(transcript);
+      });
+      recognition.addEventListener('end', recognition.start);
+      recognition.start();
+
+    });
+    
+    
+  </script>
 
 
   <style>
@@ -46,10 +57,18 @@
     }
 
     body {
-      background: blueviolet;
+      background: #d1cebf;
       font-family: 'helvetica neue';
       font-weight: 200;
       font-size: 20px;
+    }
+    .start{
+      border-radius: 36px;
+      background: #FEE996;
+    }
+    .stop{
+      border-radius: 36px;
+      background: #FEE996;
     }
 
     .words {
@@ -57,14 +76,14 @@
       margin: 50px auto;
       background: white;
       border-radius: 5px;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
       padding: 1rem 2rem 1rem 5rem;
       background: -webkit-gradient(linear, 0 0, 0 100%, from(black), color-stop(4%, #fff)) 0 4px;
       background-size: 100% 3rem;
       position: relative;
       line-height: 3rem;
     }
-    
+
     p {
       margin: 0 0 3rem;
     }
@@ -79,7 +98,29 @@
       border: 1px solid;
       border-color: transparent #efe4e4;
     }
+
+    button {
+      margin-top: 30px;
+      margin-left: 600px;
+      border-radius: 36px;
+      background: #FEE996;
+      border: 0;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.8em;
+      display: block;
+      padding: 10px 16px;
+      letter-spacing: 2px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 36px;
+      background: #FEE996;
+    }
+  
   </style>
 
 </body>
+    
 </html>
